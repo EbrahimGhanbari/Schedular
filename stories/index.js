@@ -28,7 +28,6 @@ storiesOf("Button", module)
     </Button>
   ));
 
-
   storiesOf("DayListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -40,7 +39,7 @@ storiesOf("Button", module)
     <DayListItem name="Tuesday" setDay={event => action("setDay")("Tuesday")} spots={5} />
   ));
 
-  
+
   //DayList Story
   const days = [
     {
