@@ -1,4 +1,4 @@
-export function getAppointmentsForDay(state, day) {
+export default function getAppointmentsForDay(state, day) {
 
   // return empty array if days is emppty
   if (!state.days.length) return [];
@@ -19,7 +19,7 @@ export function getAppointmentsForDay(state, day) {
         appointmentsArray.push(state.appointments[appoinment]);
     }
   });
-  
+
   return appointmentsArray;
 
 }
