@@ -6,8 +6,6 @@ import Show from "components/Appointment/Show"
 import Empty from "components/Appointment/Empty"
 
 
-
-
 import "components/Appointment/styles.scss";
 
 export default function Appointment (props) {
@@ -21,4 +19,3 @@ export default function Appointment (props) {
     );
 }
 
-// ReactDOM.render(<Application />, document.getElementById("root"));

@@ -1,6 +1,6 @@
-export default function getAppointmentsForDay(state, day) {
+export const getAppointmentsForDay = (state, day) => {
 
-  // return empty array if days is emppty
+  // return empty array if days is empty
   if (!state.days.length) return [];
 
   const appointmentsObjectForDay = state.days.filter(stateDay => stateDay.name === day);
@@ -21,5 +21,25 @@ export default function getAppointmentsForDay(state, day) {
   });
 
   return appointmentsArray;
+
+}
+
+// this func return an object containing student and interviewer info
+export const getInterview = (state, interview) => {
+
+  if (!interview) return null;
+
+  const outputInterviewer = {};
+  const AllInterviewers = state.interviewers;
+
+  for (let singleInterviewer in AllInterviewers) {
+    
+    if(AllInterviewers[singleInterviewer].id === interview.interviewer) {
+      outputInterviewer.student = interview.student
+      outputInterviewer.interviewer = AllInterviewers[singleInterviewer];
+    }
+  }
+
+  return outputInterviewer;
 
 }
