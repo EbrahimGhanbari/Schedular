@@ -19,7 +19,7 @@ export function getAppointmentsForDay(state, day) {
         appointmentsArray.push(state.appointments[appoinment]);
     }
   });
-
+  
   return appointmentsArray;
 
 }
