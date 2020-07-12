@@ -1,3 +1,4 @@
+//This function return an array of appointment info for a sepecific day
 export const getAppointmentsForDay = (state, day) => {
 
   // return empty array if days is empty
@@ -19,7 +20,7 @@ export const getAppointmentsForDay = (state, day) => {
         appointmentsArray.push(state.appointments[appoinment]);
     }
   });
-
+  
   return appointmentsArray;
 
 }
@@ -42,4 +43,35 @@ export const getInterview = (state, interview) => {
 
   return outputInterviewer;
 
+}
+
+
+
+//This function return an array of interviewer info for a sepecific day
+
+export const getInterviewersForDay = (state, day) => {
+
+  // return empty array if days is empty
+  if (!state.days.length) return [];
+  
+  const interviewersObjectForDay = state.days.filter(stateDay => stateDay.name === day);
+  
+  //return empty array if it can not find the day
+  if (!interviewersObjectForDay.length) return [];
+  
+
+  const interviewersArrayForDay = interviewersObjectForDay[0].interviewers;
+  
+  const interviewersArray = [];
+
+  interviewersArrayForDay.forEach((interviewerDay) => {
+        
+    for (let interviewer in state.interviewers) {
+      
+      if (Number(interviewer) === interviewerDay) 
+      interviewersArray.push(state.interviewers[interviewer]);
+    }
+  });
+
+  return interviewersArray;
 }

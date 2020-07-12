@@ -5,12 +5,13 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from  "components/DayList";
 import Appointment from "components/Appointment/index";
-import {getAppointmentsForDay, getInterview} from "../helpers/selectors";
+import {getAppointmentsForDay, getInterview, getInterviewersForDay} from "../helpers/selectors";
 
 
 export default function Application(props) {
 
-  let appointments = []; 
+
+  
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -20,7 +21,7 @@ export default function Application(props) {
   
   const setDay = day => setState({ ...state, day });
 
-
+//this section get data from apis 
   useEffect(() => {
     
     Promise.all([
@@ -35,7 +36,9 @@ export default function Application(props) {
     
   }, []);
   
-  appointments = getAppointmentsForDay(state, "Monday");
+  let appointments = getAppointmentsForDay(state, "Tuesday");
+  let interviewers =getInterviewersForDay(state, "Monday");
+
 
   return (
     <main className="layout">
