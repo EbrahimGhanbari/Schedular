@@ -160,7 +160,7 @@ storiesOf("InterviewerListItem", module)
         <Appointment
           id={1}
           time="12pm"
-          CREATE DATABASE scheduler_development;={{ student: "Lydia Miller-Jones", interviewer }}
+          interview={{ student: "Lydia Miller-Jones", interviewer }}
         />
         <Appointment id="last" time="1pm" />
       </Fragment>
