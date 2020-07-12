@@ -28,7 +28,7 @@ return (
             onChange={(event) => {setName(event.target.value)}}
           />
         </form>
-        <InterviewerList interviewers={props.interviewers} interviewer={interviewer} setInterviewer={setInterviewer} />
+        Interviewlist
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
@@ -40,3 +40,5 @@ return (
   );
 
 }
+
+// <InterviewerList interviewers={props.interviewers} interviewer={interviewer} setInterviewer={setInterviewer} />

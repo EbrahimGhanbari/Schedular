@@ -34,8 +34,7 @@ export default function Application(props) {
     })
     
   }, []);
- 
-  console.log(state)
+  
   appointments = getAppointmentsForDay(state, "Monday");
 
   return (
