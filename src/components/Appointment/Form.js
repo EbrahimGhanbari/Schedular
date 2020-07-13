@@ -7,7 +7,6 @@ import Button from "components/Button";
 const reset = (setName, setInterviewer) => {
   setName("");
   setInterviewer(null);
-
 };
 
 export default function Form(props) {
@@ -28,7 +27,7 @@ return (
             onChange={(event) => {setName(event.target.value)}}
           />
         </form>
-        Interviewlist
+        <InterviewerList interviewers={props.interviewers} interviewer={interviewer} setInterviewer={setInterviewer} />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
