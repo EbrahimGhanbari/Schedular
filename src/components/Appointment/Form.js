@@ -31,7 +31,7 @@ return (
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={ (event) => {props.onCancel(); reset(setName, setInterviewer);}  }>Cancel</Button>
+          <Button danger onClick={ (event) => {props.onCancel(); reset(setName, setInterviewer);}}>Cancel</Button>
           <Button confirm onClick={ (event) => props.onSave(name, interviewer)}>Save</Button>
         </section>
       </section>

@@ -19,7 +19,7 @@ export default function Application(props) {
       [id]: appointment
     };
     setState({...state, appointments});
-    axios.put(`/api/appointments/${id}`, appointment);
+    return axios.put(`/api/appointments/${id}`, appointment);
   }
 
   const cancelInterview = (id) => {
@@ -36,8 +36,10 @@ export default function Application(props) {
     };
     
     setState({...state, appointments});
-    axios.delete(`/api/appointments/${id}`, { params: { id: "interview" } })
+    return axios.delete(`/api/appointments/${id}`, { params: { id: "interview" }});
   }
+
+  
   
   // axios.delete(`/api/appointments/${5}`, { params: { '5': "interview" } })
   

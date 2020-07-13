@@ -4,6 +4,7 @@ import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
 import Form from "components/Appointment/Form";
 import Status from "components/Appointment/Status"
+import Confirm from "components/Appointment/Confirm"
 import { useVisualMode } from "../../hooks/useVisualMode";
 
 import "components/Appointment/styles.scss";
@@ -13,8 +14,14 @@ const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETE = "DELETE";
+const CONFIRM = "CONFIRM";
+
 
 export default function Appointment (props) {
+
+  const { mode, transition, back } = useVisualMode(
+    (props.interview) ? SHOW : EMPTY
+  );
   
   //this function handle saving new appointment
   const save = (name, interviewer) => {
@@ -24,14 +31,24 @@ export default function Appointment (props) {
       interviewer
     };
     transition(SAVING);
-    props.bookInterview(props.id, interview)   
-    transition(SHOW);
+    props.bookInterview(props.id, interview)
+    .then(() => {transition(SHOW);})
+    
   };
 
-  const deleteAppointment = (name, interviewer) => {
+  //this function delete the appointment
+  const deleteAppointment = (event) => {
+    transition(DELETE);
     props.cancelInterview(props.id)
-    transition(EMPTY);
+    .then(() => {transition(EMPTY);});
   }
+
+  //this function shows the confirm message 
+  const showConfirmMessage = (event) => {
+    event.preventDefault()
+    transition(CONFIRM);
+  }
+
 
   //transition to create
   const transitionToCreate = (event) => {
@@ -39,13 +56,10 @@ export default function Appointment (props) {
     transition(CREATE);
   };
 
-  const { mode, transition, back } = useVisualMode(
-    props.interview ? SHOW : EMPTY
-  );
-
-
   return (
     <>
+      {mode === DELETE && <Status message={ "Deleting" }/>}}
+      {mode === CONFIRM && <Confirm onCancel={ back } onConfirm={ deleteAppointment }/>}
       {mode === SAVING && <Status message={ "Saving" }/>}
       {mode === CREATE && (
         <Form
@@ -59,7 +73,7 @@ export default function Appointment (props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          onDelete = { deleteAppointment }
+          onDelete = { showConfirmMessage }
         />
       )}
     </>
