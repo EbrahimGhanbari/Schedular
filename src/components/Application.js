@@ -18,17 +18,28 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    
     setState({...state, appointments});
-
     axios.put(`/api/appointments/${id}`, appointment);
   }
 
-  const cancelInterview = (id, interviewe) => {
-    console.log(id, interviewe);
-
+  const cancelInterview = (id) => {
+    const appointment = {
+      ...state.appointments[id],
+      interview: {
+        student: "Just changed this",
+        interviewer: 3
+        }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    
+    setState({...state, appointments});
+    axios.delete(`/api/appointments/${id}`, { params: { id: "interview" } })
   }
   
+  // axios.delete(`/api/appointments/${5}`, { params: { '5': "interview" } })
   
   const [state, setState] = useState({
     day: "Monday",
