@@ -48,7 +48,6 @@ export const getInterview = (state, interview) => {
 
 
 //This function return an array of interviewer info for a sepecific day
-
 export const getInterviewersForDay = (state, day) => {
 
   // return empty array if days is empty
@@ -59,9 +58,7 @@ export const getInterviewersForDay = (state, day) => {
   //return empty array if it can not find the day
   if (!interviewersObjectForDay.length) return [];
   
-
   const interviewersArrayForDay = interviewersObjectForDay[0].interviewers;
-  
   const interviewersArray = [];
 
   interviewersArrayForDay.forEach((interviewerDay) => {
