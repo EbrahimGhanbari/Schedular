@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import axios from "axios";
 
 import "components/Application.scss";
 import DayList from  "components/DayList";
@@ -16,6 +15,9 @@ export default function Application(props) {
     bookInterview,
     cancelInterview
   } = useApplicationData();
+
+  // axios.delete(`/api/appointments/${23}`, { params: { id: "interview" }});
+  
 
   let appointments = getAppointmentsForDay(state, state.day);
   let interviewers =getInterviewersForDay(state, state.day);

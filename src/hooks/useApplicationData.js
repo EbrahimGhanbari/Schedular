@@ -28,11 +28,12 @@ export const useApplicationData = () => {
       ...state.appointments,
       [id]: appointment
     };
-    
+
     return axios.put(`/api/appointments/${id}`, appointment)
     .then(() => {setState({...state, appointments});})
+    .then(() => axios.get("/api/days"))
+    .then((res) =>setState(prev => ({ ...prev, days: res.data})));
   }
-
 
   const cancelInterview = (id) => {
     const appointment = {
@@ -48,7 +49,9 @@ export const useApplicationData = () => {
     };
     
     setState({...state, appointments});
-    return axios.delete(`/api/appointments/${id}`, { params: { id: "interview" }});
+    return axios.delete(`/api/appointments/${id}`, { params: { id: "interview" }})
+    .then(() => axios.get("/api/days"))
+    .then((res) =>setState(prev => ({ ...prev, days: res.data})));
   }
 
   const setDay = day => setState({ ...state, day });
