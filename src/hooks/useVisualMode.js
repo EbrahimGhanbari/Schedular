@@ -10,8 +10,10 @@ export const useVisualMode = (initial) => {
     setMode(newMode);
 
     if (replace) history.pop();
+
     setHistory((prev) => [...prev, newMode]);
   }
+
 
   function back () {
     if (history.length > 1) {

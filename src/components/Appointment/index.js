@@ -3,8 +3,9 @@ import React from 'react';
 import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
 import Form from "components/Appointment/Form";
-import Status from "components/Appointment/Status"
-import Confirm from "components/Appointment/Confirm"
+import Status from "components/Appointment/Status";
+import Confirm from "components/Appointment/Confirm";
+import Error from "components/Appointment/Error"
 import { useVisualMode } from "../../hooks/useVisualMode";
 
 import "components/Appointment/styles.scss";
@@ -16,6 +17,8 @@ const SAVING = "SAVING";
 const DELETE = "DELETE";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
+const ERROR_DELETE = "ERROR_DELETE";
+const ERROR_EDIT = "ERROR_EDIT";
 
 
 export default function Appointment (props) {
@@ -34,6 +37,7 @@ export default function Appointment (props) {
     transition(SAVING);
     props.bookInterview(props.id, interview)
     .then(() => {transition(SHOW);})
+    .catch(() => {transition(ERROR_EDIT);});
     
   };
 
@@ -41,7 +45,10 @@ export default function Appointment (props) {
   const deleteAppointment = (event) => {
     transition(DELETE);
     props.cancelInterview(props.id)
-    .then(() => {transition(EMPTY);});
+    .then(() => {transition(EMPTY);})
+    .catch(() => {transition(ERROR_DELETE);});
+    
+    
   }
 
   //this function shows the confirm message 
@@ -63,9 +70,21 @@ export default function Appointment (props) {
     transition(CREATE);
   };
 
+  //this function close the error message
+  const closeErrorMessage = (event) => {
+    event.preventDefault();
+    if (props.interview) {
+      transition(SHOW);
+    } else {
+      transition(EMPTY);
+    }
+  }
+
   return (
     <>
-      {mode === DELETE && <Status message={ "Deleting" }/>}}
+      {mode === ERROR_EDIT && <Error onClose={ closeErrorMessage } message={"Could not edit/create appointment."}/>}
+      {mode === ERROR_DELETE && <Error onClose={ closeErrorMessage } message={"Could not delete appointment."}/>}
+      {mode === DELETE && <Status message={ "Deleting" }/>}
       {mode === CONFIRM && <Confirm onCancel={ back } onConfirm={ deleteAppointment }/>}
       {mode === SAVING && <Status message={ "Saving" }/>}
       {mode === EDIT && (
