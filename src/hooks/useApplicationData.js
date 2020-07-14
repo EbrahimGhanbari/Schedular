@@ -36,19 +36,7 @@ export const useApplicationData = () => {
   }
 
   const cancelInterview = (id) => {
-    const appointment = {
-      ...state.appointments[id],
-      interview: {
-        student: "Just changed this",
-        interviewer: 3
-        }
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-    
-    setState({...state, appointments});
+   
     return axios.delete(`/api/appointments/${id}`, { params: { id: "interview" }})
     .then(() => axios.get("/api/days"))
     .then((res) =>setState(prev => ({ ...prev, days: res.data})));
