@@ -29,10 +29,13 @@ export const useApplicationData = () => {
       [id]: appointment
     };
 
+
     return axios.put(`/api/appointments/${id}`, appointment)
     .then(() => {setState({...state, appointments});})
     .then(() => axios.get("/api/days"))
     .then((res) =>setState(prev => ({ ...prev, days: res.data})));
+ 
+    
   }
 
   const cancelInterview = (id) => {
@@ -56,7 +59,6 @@ export const useApplicationData = () => {
     })
     
   }, []);
-
 
   return { state, setDay, bookInterview,  cancelInterview};
 
