@@ -42,7 +42,6 @@ export default function Appointment (props) {
       .catch(() => {transition(ERROR_EDIT);});
     }
     
-    
   };
 
   //this function delete the appointment
@@ -51,8 +50,6 @@ export default function Appointment (props) {
     props.cancelInterview(props.id)
     .then(() => {transition(EMPTY);})
     .catch(() => {transition(ERROR_DELETE);});
-    
-    
   }
 
   //this function shows the confirm message 
@@ -84,8 +81,9 @@ export default function Appointment (props) {
     }
   }
 
+  
   return (
-    <>
+    <article data-testid="appointment">
       {mode === ERROR_EDIT && <Error onClose={ closeErrorMessage } message={"Could not edit/create appointment."}/>}
       {mode === ERROR_DELETE && <Error onClose={ closeErrorMessage } message={"Could not delete appointment."}/>}
       {mode === DELETE && <Status message={ "Deleting" }/>}
@@ -116,7 +114,7 @@ export default function Appointment (props) {
           onEdit = { transitionToEdit }
         />
       )}
-    </>
+    </article>
     );
 }
 

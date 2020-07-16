@@ -16,15 +16,11 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
 
-  // axios.delete(`/api/appointments/${23}`, { params: { id: "interview" }});
-  
-
   let appointments = getAppointmentsForDay(state, state.day);
   let interviewers =getInterviewersForDay(state, state.day);
-
-
+  
   return (
-    <main className="layout">
+    <main  className="layout">
       <section className="sidebar">
         <img
           className="sidebar--centered"
@@ -47,15 +43,17 @@ export default function Application(props) {
       <section className="schedule">
         {
           appointments.map((appointment) =>  { 
-          return <Appointment
-            key={ appointment.id }
-            id={ appointment.id }
-            time={ appointment.time }
-            interview={ getInterview(state, appointment.interview) }
-            interviewers={ interviewers }
-            bookInterview = { bookInterview }
-            cancelInterview = { cancelInterview }
-          />
+            
+          return  <Appointment 
+              key={ appointment.id }
+              id={ appointment.id }
+              time={ appointment.time }
+              interview={ getInterview(state, appointment.interview) }
+              interviewers={ interviewers }
+              bookInterview = { bookInterview }
+              cancelInterview = { cancelInterview }
+            />
+          
         })
        }
       </section>
