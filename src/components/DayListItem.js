@@ -24,10 +24,11 @@ export default function DayListItem(props) {
   dayListClass = dayListClass.replace(/\s/g, '');
 
   return (
-    <li className={dayListClass}
+    <li  data-testid="day" 
+      className={dayListClass}
       onClick={props.setDay}>
       <h2 className="text--regular">{props.name}</h2>
-      <h3 className="text--light">{formatSpots(props.spots)}</h3>
+      <h3 className="text--light">{ formatSpots(props.spots) }</h3>
     </li>
   );
 }
