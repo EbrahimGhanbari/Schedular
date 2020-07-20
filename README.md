@@ -27,7 +27,7 @@ npm run storybook
 # Snapshots
 Followings are some snapshots from the webpage:
 
-![Interview page](docs/first_page_screenshots.png "Interview page")
+![Interview page](docs/first_page_screenshot.png "Interview page")
 ![Add interview](docs/adding_interview.png "Add interview")
 ![Edit interview](docs/edit_interview.png "Edit interview")
 
