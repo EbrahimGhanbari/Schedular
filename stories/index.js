@@ -115,7 +115,7 @@ storiesOf("InterviewerListItem", module)
   />
 ));
 
-  //InterviewerListnp
+  //InterviewerList
   const interviewers = [
     { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
     { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },

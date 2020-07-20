@@ -46,7 +46,6 @@ export const getInterview = (state, interview) => {
 }
 
 
-
 //This function return an array of interviewer info for a sepecific day
 export const getInterviewersForDay = (state, day) => {
 

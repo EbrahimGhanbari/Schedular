@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// this function handle transitioning between pages
 export const useVisualMode = (initial) => {
 
   const [mode, setMode] = useState(initial);
@@ -14,16 +15,13 @@ export const useVisualMode = (initial) => {
     setHistory((prev) => [...prev, newMode]);
   }
 
-
   function back () {
     if (history.length > 1) {
       setMode(history[history.length - 2]);
       history.pop();
     }
-
   }
   
-
   return { mode, transition, back };
 
 }

@@ -10,7 +10,6 @@ import axios from "axios";
 
 export const useApplicationData = () => {
 
-
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -18,7 +17,6 @@ export const useApplicationData = () => {
     interviewers: []
   });
 
-  
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
@@ -29,13 +27,10 @@ export const useApplicationData = () => {
       [id]: appointment
     };
 
-
     return axios.put(`/api/appointments/${id}`, appointment)
     .then(() => {setState({...state, appointments});})
     .then(() => axios.get("/api/days"))
     .then((res) =>setState(prev => ({ ...prev, days: res.data})));
- 
-    
   }
 
   const cancelInterview = (id) => {
@@ -62,4 +57,4 @@ export const useApplicationData = () => {
 
   return { state, setDay, bookInterview,  cancelInterview};
 
-}
+};

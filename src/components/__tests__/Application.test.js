@@ -1,15 +1,11 @@
 import React from "react";
 import axios from "axios";
 
-
 import { render, cleanup, waitForElement, fireEvent, prettyDOM, getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText } from "@testing-library/react";
 
 import Application from "components/Application";
 
-
 afterEach(cleanup);
-
-
 
 describe("Application", () => {
 
@@ -17,6 +13,7 @@ describe("Application", () => {
     const { getByText } = render(<Application />);
 
     await waitForElement(() => getByText("Monday"));
+    
     fireEvent.click(getByText("Tuesday"));
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
   });

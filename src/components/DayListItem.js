@@ -2,7 +2,6 @@ import React from "react";
 import classnames from "classnames";
 import "components/DayListItem.scss";
 
-
 // this funcation format the spots
 const formatSpots = (spots) => {
   if (spots > 1) {
@@ -17,6 +16,7 @@ const formatSpots = (spots) => {
 };
 
 export default function DayListItem(props) {
+  //define the class if its selected
   let dayListClass = classnames("day-list__item", {
     "--selected": props.selected,
     "--full": !props.spots

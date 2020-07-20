@@ -1,10 +1,10 @@
 import React from "react";
-import "components/InterviewerListItem.scss"
+import "components/InterviewerListItem.scss";
 import classnames from "classnames";
 
 
 export default function InterviewerListItem(props) {
-
+  //change class if it is selected
   let interviewerClass = classnames("interviewers__item", {
     "--selected": props.selected
   });
